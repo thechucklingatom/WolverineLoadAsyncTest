@@ -1,9 +1,16 @@
 namespace WolverineLoadTest
 
 open Wolverine
+open Wolverine.Attributes
 open WolverineLoadTest.MyEvent
 
+[<StickyHandler("EventFirstHandler")>]
 module EventFirstHandler =
+    (*
+    type internal Marker = interface end
+    let t = typeof<Marker>.DeclaringType
+    *)
+    
     let LoadAsync (event: MyEvent) =
         task {
 
