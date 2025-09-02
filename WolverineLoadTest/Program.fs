@@ -1,8 +1,10 @@
 ﻿// For more information see https://aka.ms/fsharp-console-apps
 open JasperFx
+open Microsoft.Extensions.DependencyInjection
 open Microsoft.Extensions.Hosting
 open Wolverine
 open Wolverine.FluentValidation
+open WolverineLoadTest
 
 module Program =
     let createHostBuilder args =
@@ -12,10 +14,13 @@ module Program =
         builder.ConfigureServices(fun context services ->
 
             services.AddWolverine(fun opts ->
-                opts.UseFluentValidation() |> ignore )
-            |> ignore)
+                opts.UseFluentValidation() |> ignore
+                opts.MultipleHandlerBehavior <- MultipleHandlerBehavior.Separated
+                ) |> ignore
+            services.AddHostedService<ConsoleService>() |> ignore )
 
     [<EntryPoint>]
     let main args =
         let host = createHostBuilder(args).Build()
-        host.RunJasperFxCommandsSynchronously(args)
+        host.RunJasperFxCommandsSynchronously(args) |> ignore
+        0

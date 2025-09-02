@@ -9,6 +9,7 @@
         <Compile Include="MyEvent.fs" />
         <Compile Include="EventFirstHandler.fs" />
         <Compile Include="EventSecondHandler.fs" />
+        <Compile Include="ConsoleService.fs" />
         <Compile Include="Program.fs"/>
     </ItemGroup>
 

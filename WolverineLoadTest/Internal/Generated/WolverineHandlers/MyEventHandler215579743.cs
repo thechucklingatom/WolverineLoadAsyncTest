@@ -14,16 +14,19 @@ namespace Internal.Generated.WolverineHandlers
             // The actual message body
             var myEvent = (WolverineLoadTest.MyEvent.MyEvent)context.Envelope.Message;
 
-            (var handlerContinuation1, var intValue) = await WolverineLoadTest.EventFirstHandler.LoadAsync(myEvent).ConfigureAwait(false);
+            (var handlerContinuation1, var intValue, var intValue2) = await WolverineLoadTest.EventSecondHandler.LoadAsync(myEvent).ConfigureAwait(false);
             // Evaluate whether or not the execution should stop based on the HandlerContinuation value
             if (handlerContinuation1 == Wolverine.HandlerContinuation.Stop) return;
+            (var handlerContinuation2, var intValue) = await WolverineLoadTest.EventFirstHandler.LoadAsync(myEvent).ConfigureAwait(false);
+            // Evaluate whether or not the execution should stop based on the HandlerContinuation value
+            if (handlerContinuation2 == Wolverine.HandlerContinuation.Stop) return;
             
             // The actual message execution
-            WolverineLoadTest.EventSecondHandler.Handle(myEvent);
+            WolverineLoadTest.EventSecondHandler.Handle(myEvent, intValue);
 
             
             // The actual message execution
-            WolverineLoadTest.EventFirstHandler.Handle(myEvent);
+            WolverineLoadTest.EventFirstHandler.Handle(myEvent, intValue);
 
         }
 

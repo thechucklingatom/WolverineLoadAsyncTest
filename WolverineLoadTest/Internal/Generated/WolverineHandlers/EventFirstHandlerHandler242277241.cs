@@ -15,12 +15,12 @@ namespace Internal.Generated.WolverineHandlers
             var myEvent = (WolverineLoadTest.MyEvent.MyEvent)context.Envelope.Message;
 
             System.Diagnostics.Activity.Current?.SetTag("message.handler", "WolverineLoadTest.EventFirstHandler");
-            (var handlerContinuation1, var intValue) = await WolverineLoadTest.EventFirstHandler.LoadAsync(myEvent).ConfigureAwait(false);
+            (var handlerContinuation2, var intValue) = await WolverineLoadTest.EventFirstHandler.LoadAsync(myEvent).ConfigureAwait(false);
             // Evaluate whether or not the execution should stop based on the HandlerContinuation value
-            if (handlerContinuation1 == Wolverine.HandlerContinuation.Stop) return;
+            if (handlerContinuation2 == Wolverine.HandlerContinuation.Stop) return;
             
             // The actual message execution
-            WolverineLoadTest.EventFirstHandler.Handle(myEvent);
+            WolverineLoadTest.EventFirstHandler.Handle(myEvent, intValue);
 
         }
 

@@ -9,17 +9,19 @@ namespace Internal.Generated.WolverineHandlers
     {
 
 
-        public override System.Threading.Tasks.Task HandleAsync(Wolverine.Runtime.MessageContext context, System.Threading.CancellationToken cancellation)
+        public override async System.Threading.Tasks.Task HandleAsync(Wolverine.Runtime.MessageContext context, System.Threading.CancellationToken cancellation)
         {
             // The actual message body
             var myEvent = (WolverineLoadTest.MyEvent.MyEvent)context.Envelope.Message;
 
             System.Diagnostics.Activity.Current?.SetTag("message.handler", "WolverineLoadTest.EventSecondHandler");
+            (var handlerContinuation1, var intValue, var intValue2) = await WolverineLoadTest.EventSecondHandler.LoadAsync(myEvent).ConfigureAwait(false);
+            // Evaluate whether or not the execution should stop based on the HandlerContinuation value
+            if (handlerContinuation1 == Wolverine.HandlerContinuation.Stop) return;
             
             // The actual message execution
-            WolverineLoadTest.EventSecondHandler.Handle(myEvent);
+            WolverineLoadTest.EventSecondHandler.Handle(myEvent, intValue);
 
-            return System.Threading.Tasks.Task.CompletedTask;
         }
 
     }

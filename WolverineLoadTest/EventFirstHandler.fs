@@ -4,7 +4,9 @@ open Wolverine
 open Wolverine.Attributes
 open WolverineLoadTest.MyEvent
 
+(*
 [<StickyHandler("EventFirstHandler")>]
+*)
 module EventFirstHandler =
     (*
     type internal Marker = interface end
@@ -18,8 +20,8 @@ module EventFirstHandler =
 
             return struct (handlerContinuation, 1)
         }
-    let Handle (event: MyEvent) =
-        printfn "Handling event with Id: %d and Name: %s" event.Id event.Name
+    let Handle (event: MyEvent, v: int) =
+        printfn "Handling event with Id: %d and Name: %s and value: %d" event.Id event.Name v 
         // Add your event handling logic here
         ()
 
