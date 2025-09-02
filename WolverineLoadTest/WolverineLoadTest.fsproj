@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net9.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="MyEvent.fs" />
+        <Compile Include="EventFirstHandler.fs" />
+        <Compile Include="EventSecondHandler.fs" />
+        <Compile Include="Program.fs"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="WolverineFx" Version="4.10.1" />
+      <PackageReference Include="WolverineFx.FluentValidation" Version="4.10.1" />
+    </ItemGroup>
+
+</Project>
