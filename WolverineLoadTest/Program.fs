@@ -15,7 +15,9 @@ module Program =
 
             services.AddWolverine(fun opts ->
                 opts.UseFluentValidation() |> ignore
+                (*
                 opts.MultipleHandlerBehavior <- MultipleHandlerBehavior.Separated
+                *)
                 ) |> ignore
             services.AddHostedService<ConsoleService>() |> ignore )
 
